@@ -6,15 +6,15 @@ import img4 from "@/public/robot.png";
 import img5 from "@/public/metal.jpg";
 import img6 from "@/public/ghost.jpg";
 import img7 from "@/public/demon.png";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useRef } from "react";
-import { useScroll, useTransform, motion } from "motion/react";
+import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
 import useDimension from "@/utils/useDimension";
 
 const images = [img1, img2, img3, img4, img5, img6, img7];
 
 const Parallaxx = () => {
-  const container = useRef(null);
+  const container = useRef<HTMLDivElement | null>(null);
   const { height } = useDimension();
   const { scrollYProgress } = useScroll({
     target: container,
@@ -24,12 +24,12 @@ const Parallaxx = () => {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 3.3]);
   const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 1.25]);
   const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 3.3]);
+
   return (
-    <main className="">
-      {/* <div className="h-[100vh]"></div> */}
+    <main>
       <div
         ref={container}
-        className="h-[175vh] overflow-hidden bg-black flex flex-row gap-[2vw] p-[2vw] box-border "
+        className="h-[175vh] overflow-hidden bg-black flex flex-row gap-[2vw] p-[2vw] box-border"
       >
         <Column
           images={[images[0], images[1], images[3]]}
@@ -52,19 +52,25 @@ const Parallaxx = () => {
           className="top-[-95%]"
         />
       </div>
-      {/* <div className="h-[100vh]"></div> */}
     </main>
   );
 };
+
 export default Parallaxx;
 
-const Column = ({ images, y = 0, className }: any) => {
+interface ColumnProps {
+  images: StaticImageData[]; // Next.js uses `StaticImageData` for imported images
+  y: MotionValue<number>; // MotionValue type for `y`
+  className?: string; // Optional className prop
+}
+
+const Column: React.FC<ColumnProps> = ({ images, y, className }) => {
   return (
     <motion.div
       style={{ y }}
       className={`w-[25%] relative h-[100%] flex flex-col gap-[2vw] min-w-[250px] ${className}`}
     >
-      {images.map((src: any, index: number) => (
+      {images.map((src, index) => (
         <div
           key={index}
           className="w-[100%] h-[100%] relative overflow-hidden rounded-[1vw]"
