@@ -1,6 +1,7 @@
 "use client";
 import Parallax from "@/components/Parallax";
 import Lenis from "lenis";
+import Link from "next/link";
 import { useEffect } from "react";
 
 const Home = () => {
@@ -15,9 +16,12 @@ const Home = () => {
 
   return (
     <main>
-      <button className="p-4 rounded-lg bg-white text-black flex items-center justify-center">
+      <Link
+        href="/parallax"
+        className="p-4 rounded-lg w-full bg-white text-black flex items-center justify-center"
+      >
         Parallax
-      </button>
+      </Link>
       <Parallax />
     </main>
   );
