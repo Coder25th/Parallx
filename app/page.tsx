@@ -1,11 +1,6 @@
 "use client";
-import Parallax from "@/components/Parallax";
 import Lenis from "lenis";
 import { motion } from "framer-motion";
-import { AnimatePresence } from "motion/react";
-import Image from "next/image";
-import Link from "next/link";
-import metal from "@/public/berserk.jpg";
 import { useEffect } from "react";
 import useMousePosition from "@/utils/useMousePosition";
 
