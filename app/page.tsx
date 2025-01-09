@@ -1,30 +1,10 @@
-"use client";
-import Parallax from "@/components/Parallax";
-import Lenis from "lenis";
-import Link from "next/link";
-import { useEffect } from "react";
+import Cursor from "@/components/Cursor";
 
-const Home = () => {
-  useEffect(() => {
-    const lenis = new Lenis();
-    function raf(time: DOMHighResTimeStamp) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-  }, []);
-
+const HomePage = () => {
   return (
-    <main>
-      <Link
-        href="/parallax"
-        className="p-4 rounded-lg w-full bg-white text-black flex items-center justify-center"
-      >
-        Parallax
-      </Link>
-      <Parallax />
-    </main>
+    <div>
+      <Cursor heading={"Coder25th"} text={"Aryan turan"} />
+    </div>
   );
 };
-
-export default Home;
+export default HomePage;
